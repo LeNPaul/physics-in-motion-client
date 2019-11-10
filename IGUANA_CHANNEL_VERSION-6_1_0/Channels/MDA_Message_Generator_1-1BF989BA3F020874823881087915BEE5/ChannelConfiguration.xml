@@ -7,7 +7,7 @@
    use_message_filter="false">
    <to_llp_client
       remote_host="${HA_VIP}"
-      remote_port="53457"
+      remote_port="5345"
       wait_for_ack="true"
       ack_timeout="10000"
       ack_verification_type="0"
@@ -34,8 +34,8 @@
    </to_llp_client>
    <from_mapper
       guid="HL7_Random_Message_Generator-From-eaxmlHb2CPJfGy"
-      commit_id="3535889fc4966a1d16b64f652982a44fb94ca8cd"
-      commit_comment="fdsa"
+      commit_id="28b3366767604b192c8118f6f0973cfebee63d7d"
+      commit_comment="Import Translators: Import test channels"
       poll_time="1000">
    </from_mapper>
 </channel>

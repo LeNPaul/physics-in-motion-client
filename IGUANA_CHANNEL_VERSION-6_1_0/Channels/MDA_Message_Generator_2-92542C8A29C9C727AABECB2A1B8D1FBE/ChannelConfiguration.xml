@@ -6,8 +6,8 @@
    logging_level="1"
    use_message_filter="false">
    <to_llp_client
-      remote_host="localhost"
-      remote_port="5346"
+      remote_host="${HA_VIP}"
+      remote_port="5345"
       wait_for_ack="true"
       ack_timeout="10000"
       ack_verification_type="0"
@@ -34,8 +34,8 @@
    </to_llp_client>
    <from_mapper
       guid="HL7_Random_Message_Generator-From-LTlXEkOoKEx7gB"
-      commit_id="48ae1e4f35d3d40155137da6dfa8a9d96c772f59"
-      commit_comment="asdf"
+      commit_id="28b3366767604b192c8118f6f0973cfebee63d7d"
+      commit_comment="Import Translators: Import test channels"
       poll_time="1000">
    </from_mapper>
 </channel>
