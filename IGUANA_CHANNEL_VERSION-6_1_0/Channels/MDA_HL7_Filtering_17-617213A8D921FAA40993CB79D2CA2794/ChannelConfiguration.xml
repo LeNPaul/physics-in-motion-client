@@ -1,0 +1,30 @@
+<channel
+   name="MDA HL7 Filtering 17"
+   guid="617213A8D921FAA40993CB79D2CA2794"
+   description=""
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="true">
+   <to_channel>
+      <dequeue_list>
+         <dequeue
+            source_name="MDA HL7 Listener 17"
+            dequeue_guid="AD59885AA1CC45A7B5BC15CE46A185A7"/>
+      </dequeue_list>
+   </to_channel>
+   <from_channel/>
+   <message_filter
+      filter_after_logging="false"
+      log_pre_post_filter_message="true"
+      keep_vmd_updated="false"
+      original_vmd_path=""
+      filter_vmd_path=""
+      transformation_mode="0"
+      scripted_transformation_configuration_name="default"
+      error_handling="0"
+      use_translator_filter="true"
+      translator_guid="MDA_HL7_Filtering_17-Filter-ZLtOMk4VWmF0wY"
+      translator_commit_id="75261fa1fe5453ed72b11ed80d94f446b5f72e34"
+      translator_commit_comment="testing jaes">
+   </message_filter>
+</channel>
