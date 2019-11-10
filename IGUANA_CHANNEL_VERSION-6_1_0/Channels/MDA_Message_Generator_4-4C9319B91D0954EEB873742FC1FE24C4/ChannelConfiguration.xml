@@ -7,7 +7,7 @@
    use_message_filter="false">
    <to_llp_client
       remote_host="${HA_VIP}"
-      remote_port="5345"
+      remote_port="5348"
       wait_for_ack="true"
       ack_timeout="10000"
       ack_verification_type="0"
