@@ -6,7 +6,7 @@
    logging_level="1"
    use_message_filter="false">
    <to_llp_client
-      remote_host="localhost"
+      remote_host="${HA_DESTINATION}"
       remote_port="5145"
       wait_for_ack="true"
       ack_timeout="10000"
