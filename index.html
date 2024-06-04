@@ -6,7 +6,7 @@ title: "Home"
 <div class="container">
   <div class="col-lg-8 mx-auto p-3 py-md-5">
 
-    <h2>How to Build a Solar System</h2>
+    <h2>How to Build a Solar System From Scratch</h2>
 
     <figure class="text-center mt-5 pb-3">
       <blockquote class="blockquote">
@@ -25,7 +25,7 @@ title: "Home"
       the motion of a body.
     </p>
 
-    <h5 class="pt-3">Describing Objects on an Axes</h5>
+    <h5 class="pt-3">Describing Bodies on an Axes</h5>
 
     <p>
       To more easily describe the motion of objects that we are studying, 
@@ -40,6 +40,27 @@ title: "Home"
     </p>
     
     <div class="d-flex justify-content-center" id="one-dimensional-position"></div>
+
+    <h5 class="pt-3">Coordinate Systems</h5>
+
+    <p>
+      In physics, the <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system" class="text-dark">Cartesian coordinate system</a> 
+      is used to specify the position of objects in space at a given time. The x-axis 
+      typically represents time, while the y-axis represents position with respect to 
+      the origin. At any point in time along the x-axis, there is a corresponding point 
+      on the y-axis that represents the distance of that object from the origin.
+    </p>
+
+    <h5 class="pt-3">Graphing the Position of an Object</h5>
+    
+    <p>
+      The following chart on the left describes the motion of the object above. Between 0 - 4 time units, 
+      the object is moving away from the origin until it reaches a posiiton of 4 units to the right. 
+      Between 4 - 8 time units, the object moves towards the origin, and we see the graph slopes downwards 
+      until it reaches position 0.
+    </p>
+
+    <canvas id="myChart2" width="400" height="400"></canvas>
 
     <p>
       All bodies of mass have gravitational attraction to each other. 
@@ -209,6 +230,85 @@ title: "Home"
     }
   }
   new p5(script2,'one-dimensional-position');
+
+
+  const myChart1 = new Chart(document.getElementById('myChart1'), {
+    type: 'line',
+    data: {
+      labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      datasets: [{
+        label: 'Cartesian Coordinate System',
+        data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      }]
+    },
+    options: {
+      layout: {
+        padding: 30
+      },
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Time'
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Position'
+          }
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Position as a Function of Time'
+        },
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+
+  const myChart2 = new Chart(document.getElementById('myChart2'), {
+    type: 'line',
+    data: {
+      labels: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      datasets: [{
+        label: 'Cartesian Coordinate System',
+        data: [0, 1, 2, 3, 4, 3, 2, 1, 0],
+      }]
+    },
+    options: {
+      layout: {
+        padding: 30
+      },
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Time'
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Position'
+          }
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Position as a Function of Time'
+        },
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
 
 
 
