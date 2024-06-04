@@ -8,6 +8,39 @@ title: "Home"
 
     <h2>How to Build a Solar System</h2>
 
+    <figure class="text-center mt-5 pb-3">
+      <blockquote class="blockquote">
+        <p>If you wish to make an apple pie from scratch, you must first invent the universe</p>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        Carl Sagan
+      </figcaption>
+    </figure>
+
+    <p>
+      In a similar manner, if we wish to build a Solar System from scratch, 
+      we must first start with the fundamental concepts and building blocks. 
+      Short of inventing the universe, we will start with the study of motion. 
+      Namely, we will start with the mathematical tools that we use to describe 
+      the motion of a body.
+    </p>
+
+    <h5 class="pt-3">Describing Objects on an Axes</h5>
+
+    <p>
+      To more easily describe the motion of objects that we are studying, 
+      we simplfiy the object by imagining that the object - regardless of 
+      its size or shape - is a tiny particle that we treat as a single point. 
+      For describing the position in one dimension, we imagine that the particle 
+      is sitting in a coordinate system, where the position of the particle can 
+      be anywhere along a line that we call an axis, with respect to an arbitrary 
+      point that we call the origin. The origin is considered the zero point, and 
+      the number of units from the origin to the object on the axis is used to 
+      represent the position of that point on the coordinate system.
+    </p>
+    
+    <div class="d-flex justify-content-center" id="one-dimensional-position"></div>
+
     <p>
       All bodies of mass have gravitational attraction to each other. 
       However, the force of attraction is typically too small to perceive 
@@ -92,5 +125,91 @@ title: "Home"
     }
   }
   new p5(script1,'two-body');
+
+
+  const script2 = p5 => {
+    // this class describes the properties of a single particle.
+    class Particle {
+    // setting the co-ordinates, radius and the
+    // speed of a particle in both the co-ordinates axes.
+      constructor(){
+        this.x = 0;
+        this.y = p5.height / 2;
+        this.r = 20;
+        this.xSpeed = 1;
+        this.ySpeed = 0;
+      }
+
+    // creation of a particle.
+      createParticle() {
+        p5.noStroke();
+        p5.fill('black');
+        p5.circle(this.x,this.y,this.r);
+      }
+
+    // setting the particle in motion.
+      moveParticle() {
+
+        if(this.x >= 100 ) {
+          p5.textSize(32);
+          p5.text( (this.x / 100).toPrecision(2), 0, 275);
+        }
+        if(this.x < 100 && this.x > 10) {
+          p5.textSize(32);
+          p5.text( (this.x / 100).toPrecision(1), 0, 275);
+        }
+        if(this.x <= 10) {
+          p5.textSize(32);
+          p5.text( '0.0', 0, 275);
+        }
+
+        if(this.x < 0 || this.x > p5.width)
+          this.xSpeed*=-1;
+        if(this.y < 0 || this.y > p5.height)
+          this.ySpeed*=-1;
+        this.x+=this.xSpeed;
+        this.y+=this.ySpeed;
+      }
+
+    }
+
+    // an array to add multiple particles
+    let particles = [];
+
+    p5.setup = () => {
+      p5.createCanvas(400, 400);
+
+      particles.push(new Particle());
+    }
+
+    p5.draw = () => {
+      p5.background('0');
+      for(let i = 0;i<particles.length;i++) {
+        particles[i].createParticle();
+        particles[i].moveParticle();
+      }
+
+      p5.stroke(0, 0, 0);
+      p5.line(0, p5.height * 0.5, p5.width, p5.height * 0.5);
+
+      p5.stroke(0, 0, 0);
+      p5.line(1, 175, 1, 225);
+
+      p5.stroke(0, 0, 0);
+      p5.line(p5.height * 0.25, 175, p5.height * 0.25, 225);
+
+      p5.stroke(0, 0, 0);
+      p5.line(p5.height * 0.5, 175, p5.height * 0.5, 225);
+
+      p5.stroke(0, 0, 0);
+      p5.line(p5.height * 0.75, 175, p5.height * 0.75, 225);
+
+      p5.stroke(0, 0, 0);
+      p5.line(p5.height - 1, 175, p5.height - 1, 225);
+    }
+  }
+  new p5(script2,'one-dimensional-position');
+
+
 
 </script>
