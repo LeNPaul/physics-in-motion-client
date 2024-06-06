@@ -25,7 +25,7 @@ title: "Home"
       the motion of a body.
     </p>
 
-    <h5 class="pt-3">Describing Bodies on an Axes</h5>
+    <h5 class="pt-3">Describing Bodies on Axes</h5>
 
     <p>
       To more easily describe the motion of objects that we are studying, 
@@ -40,6 +40,16 @@ title: "Home"
     </p>
     
     <div class="d-flex justify-content-center" id="one-dimensional-position"></div>
+
+    <p>
+      In two dimensions, we simply add another axis. Typically, they are called 
+      the x and y axes. If we wanted to track the position of an object in three 
+      dimensions, we could add another axis. For simplicity, we will focus on 
+      two dimensions for now, but many of the same concepts can easily be extended 
+      to three dimensions.
+    </p>
+
+    <div class="d-flex justify-content-center" id="two-dimensional-position"></div>
 
     <h5 class="pt-3">Coordinate Systems</h5>
 
@@ -60,8 +70,15 @@ title: "Home"
       until it reaches position 0.
     </p>
 
-    <canvas id="myChart2" width="400" height="400"></canvas>
+    <canvas id="myChart2" width="400" height="200"></canvas>
 
+    <h5 class="pt-3">Position in Two Dimensions</h5>
+
+    <p>
+      With position in one-dimension,  of a particle at a given time along a single axis. When studying the position of a particle in two dimensions, we apply the same logic, except now we are looking at position along two axes.
+    </p>
+
+    <!--
     <p>
       All bodies of mass have gravitational attraction to each other. 
       However, the force of attraction is typically too small to perceive 
@@ -78,7 +95,7 @@ title: "Home"
       attraction between the smaller objects and focus only on the gravitational 
       force of attraction between the central mass and the orbiting planets.
     </p>
-
+    -->
 
   </div>
 
@@ -231,46 +248,6 @@ title: "Home"
   }
   new p5(script2,'one-dimensional-position');
 
-
-  const myChart1 = new Chart(document.getElementById('myChart1'), {
-    type: 'line',
-    data: {
-      labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      datasets: [{
-        label: 'Cartesian Coordinate System',
-        data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      }]
-    },
-    options: {
-      layout: {
-        padding: 30
-      },
-      scales: {
-        x: {
-          title: {
-            display: true,
-            text: 'Time'
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: 'Position'
-          }
-        }
-      },
-      plugins: {
-        title: {
-          display: true,
-          text: 'Position as a Function of Time'
-        },
-        legend: {
-          display: false
-        }
-      }
-    }
-  });
-
   const myChart2 = new Chart(document.getElementById('myChart2'), {
     type: 'line',
     data: {
@@ -310,6 +287,87 @@ title: "Home"
     }
   });
 
+  const script3 = p5 => {
+    // this class describes the properties of a single particle.
+    class Particle {
+    // setting the co-ordinates, radius and the
+    // speed of a particle in both the co-ordinates axes.
+      constructor(){
+        this.x = 0;
+        this.y = p5.height / 2;
+        this.r = 20;
+        this.xSpeed = 1;
+        this.ySpeed = -1;
+      }
 
+    // creation of a particle.
+      createParticle() {
+        p5.noStroke();
+        p5.fill('black');
+        p5.circle(this.x,this.y,this.r);
+      }
+
+    // setting the particle in motion.
+      moveParticle() {
+        if(this.x >= 100 ) {
+          p5.textSize(32);
+          p5.text( (this.x / 100).toPrecision(2), 0, 275);
+        }
+        if(this.x < 100 && this.x > 10) {
+          p5.textSize(32);
+          p5.text( (this.x / 100).toPrecision(1), 0, 275);
+        }
+        if(this.x <= 10) {
+          p5.textSize(32);
+          p5.text( '0.0', 0, 275);
+        }
+        if(this.y < 0 || this.y > 200) {
+          this.xSpeed = -1;
+        }
+        if(this.x == 0) {
+          this.xSpeed = 1;
+          this.ySpeed = -1;
+        }
+        this.x+=this.xSpeed;
+        this.y+=this.ySpeed + this.x * this.x * 0.00002;
+      }
+    }
+
+    // an array to add multiple particles
+    let particles = [];
+
+    p5.setup = () => {
+      p5.createCanvas(400, 400);
+
+      particles.push(new Particle());
+    }
+
+    p5.draw = () => {
+      p5.background('0');
+      for(let i = 0;i<particles.length;i++) {
+        particles[i].createParticle();
+        particles[i].moveParticle();
+      }
+
+      p5.stroke(0, 0, 0);
+      p5.line(0, p5.height * 0.5, p5.width, p5.height * 0.5);
+
+      p5.stroke(0, 0, 0);
+      p5.line(1, 175, 1, 225);
+
+      p5.stroke(0, 0, 0);
+      p5.line(p5.height * 0.25, 175, p5.height * 0.25, 225);
+
+      p5.stroke(0, 0, 0);
+      p5.line(p5.height * 0.5, 175, p5.height * 0.5, 225);
+
+      p5.stroke(0, 0, 0);
+      p5.line(p5.height * 0.75, 175, p5.height * 0.75, 225);
+
+      p5.stroke(0, 0, 0);
+      p5.line(p5.height - 1, 175, p5.height - 1, 225);
+    }
+  }
+  const p5canvas1 = new p5(script3, 'two-dimensional-position');
 
 </script>
