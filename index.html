@@ -36,7 +36,7 @@ title: "Home"
       be anywhere along a line that we call an axis, with respect to an arbitrary 
       point that we call the origin. The origin is considered the zero point, and 
       the number of units from the origin to the object on the axis is used to 
-      represent the position of that point on the coordinate system.
+      represent the position of that point on the axis.
     </p>
     
     <div class="d-flex justify-content-center" id="one-dimensional-position"></div>
@@ -56,14 +56,25 @@ title: "Home"
     <p>
       In physics, the <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system" 
       class="text-dark">Cartesian coordinate system</a> is used to specify the position 
-      of objects in space at a given time. For describing motion in one dimension, the x-axis 
-      typically represents time, while the y-axis represents position with respect to the 
+      of objects in space over time. We can directly plot the motion of an object in two 
+      dimensions on a coordinate system, where the x and y axes are perpendicular to each 
+      other and each represent a plane of motion.
+    </p>
+
+    <div class="d-flex justify-content-center"><canvas id="myChart1" width="400" height="200"></canvas></div>
+
+    <h5 class="pt-3">Graphing the Position of an Object in Time</h5>
+    
+    <p>
+      Motion, however, implies that time is moving forward. How do we represent time going forward? 
+      In the above graph, it was implied that time was increasing and that the object was moving along 
+      the plotted path as time increased. We can represent this in a graph, where in one dimension, 
+      the x-axis represents time, while the y-axis represents position with respect to the 
       origin. At any point in time along the x-axis, there is a corresponding point on the 
       y-axis that represents the distance of that object from the origin.
     </p>
 
-    <h5 class="pt-3">Graphing the Position of an Object</h5>
-    
+
     <p>
       The following chart describes the motion of an object in one dimension, the very first 
       visualization shown. Between 0 - 4 time units, the object is moving away from the origin 
@@ -365,5 +376,45 @@ title: "Home"
     }
   }
   const p5canvas1 = new p5(script3, 'two-dimensional-position');
+
+  const myChart1 = new Chart(document.getElementById('myChart1'), {
+    type: 'line',
+    data: {
+      labels: [0, 0.5, 1, 1.5, 2, 2.5],
+      datasets: [{
+        label: 'Cartesian Coordinate System',
+        data: [4, 5.5, 6, 5.5, 4, 1.5],
+        tension: 0.4
+      }]
+    },
+    options: {
+      layout: {
+        padding: 30
+      },
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'x(t)'
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'y(t)'
+          }
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Cartesian Coordinate System'
+        },
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
 
 </script>
